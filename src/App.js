@@ -2,24 +2,18 @@ import React, { useState } from "react";
 import data from "./data";
 import SingleQuestion from "./Question";
 function App() {
-  const [myNum, setMyNum] = useState();
-  function handlePlusClick(id) {
-    let myNewID = id - 1;
-    setMyNum(myNewID);
-    console.log(myNewID);
+  const [questions, setQuestions] = useState(data);
 
-    // setIsShown(!isShown);
-  }
   return (
     <main>
-      <section className="container">
+      <div className="container">
         <h3>Questions And Answers About Login</h3>
-        <SingleQuestion
-          arrData={data}
-          handlePlusClick={handlePlusClick}
-          passedID={myNum}
-        />
-      </section>
+        <section>
+          {questions.map((question) => {
+            return <SingleQuestion key={question.id} {...question} />;
+          })}
+        </section>
+      </div>
     </main>
   );
 }
